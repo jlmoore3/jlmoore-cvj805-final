@@ -87,7 +87,7 @@ function App() {
             <header>
               <div className="header-fw">
                 <Navmenu setUser={setUser} user={user} />
-                {userHack === false && <Login user={user} setUser={setUser} />}
+                {!userHack && <Login user={user} setUser={setUser} />}
               </div>
             </header>
           </Switch>
@@ -95,7 +95,7 @@ function App() {
           <Switch>
             <div>
               <Route exact path="/">
-                {userHack == true && <FeaturedMovies setUser={setUser} />}
+                {userHack && <FeaturedMovies setUser={setUser} />}
                 <Movies addSaved={addSaved} />
               </Route>
               <Route exact path="/dashboard">
