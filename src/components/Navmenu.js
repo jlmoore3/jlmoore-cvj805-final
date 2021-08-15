@@ -12,11 +12,11 @@ const Navmenu = (props) => {
         </Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/genres">Genres</Nav.Link>
-          <Nav.Link href={`/?search=Movie`}>All Movies</Nav.Link>
-          <Nav.Link href={`/?search=TV`}>All TV</Nav.Link>
+          <Nav.Link href={`/films`}>Films</Nav.Link>
+          <Nav.Link href={`/tv`}>TV Shows</Nav.Link>
 
           {userHack ? (
-            <Nav.Link href="/dashboard">My Dashboard</Nav.Link>
+            <Nav.Link href="/dashboard">My Movies</Nav.Link>
           ) : (
             <Nav.Link href="/register">Register</Nav.Link>
           )}

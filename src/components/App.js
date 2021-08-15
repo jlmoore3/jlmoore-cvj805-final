@@ -8,8 +8,11 @@ import Login from "./Login";
 import Register from "./Register";
 import FeaturedMovies from "./FeaturedMovies";
 import MovieContext from "../context/MovieContext.js";
+import Films from "./Films.js";
+import Tv from "./Tv.js";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -68,7 +71,7 @@ function App() {
   // console.log(`all movies: ${movies}`);
 
   let userHack = window.sessionStorage.getItem("loggedIn");
-
+  console.log(userHack);
   const [savedMovies, setSaved] = useState([]);
   const addSaved = (newSaved) => {
     localStorage.setItem("saved", JSON.stringify([...savedMovies, newSaved]));
@@ -84,7 +87,7 @@ function App() {
             <header>
               <div className="header-fw">
                 <Navmenu setUser={setUser} user={user} />
-                {!userHack && <Login user={user} setUser={setUser} />}
+                {userHack === false && <Login user={user} setUser={setUser} />}
               </div>
             </header>
           </Switch>
@@ -92,10 +95,14 @@ function App() {
           <Switch>
             <div>
               <Route exact path="/">
-                {userHack && <FeaturedMovies setUser={setUser} />}
+                {userHack == true && <FeaturedMovies setUser={setUser} />}
                 <Movies addSaved={addSaved} />
               </Route>
-
+              <Route exact path="/dashboard">
+                {userHack === true && <Dashboard />}
+              </Route>
+              <Route path="/tv" component={Tv} addSaved={addSaved} />
+              <Route path="/films" component={Films} />
               <Route path="/register" component={Register} />
               <Route path="/genres" component={Genres} />
               <Route path="/:id" component={MoviePage} />
