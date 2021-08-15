@@ -14,12 +14,8 @@ const Navmenu = (props) => {
           <Nav.Link href="/genres">Genres</Nav.Link>
           <Nav.Link href={`/films`}>Films</Nav.Link>
           <Nav.Link href={`/tv`}>TV Shows</Nav.Link>
-
-          {userHack ? (
-            <Nav.Link href="/dashboard">My Movies</Nav.Link>
-          ) : (
-            <Nav.Link href="/register">Register</Nav.Link>
-          )}
+          <Nav.Link href="/dashboard">My Movies</Nav.Link>
+          <Nav.Link href="/register">Register</Nav.Link>
         </Nav>
         <div className="search-bar">
           <>
