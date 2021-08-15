@@ -15,6 +15,29 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [users, setUsers] = useState();
   const [user, setUser] = useState();
+  // TODO - set up flat json files for backup data calls to put inside catch. Leaving this out because we are specifically testing API
+  // const MoviesFlat = fetch("http://localhost:5000/movies")
+  //   .then((allMovieData) => {
+  //     return allMovieData.json();
+  //   })
+  //   .then((json) => {
+  //     console.log(json.body);
+  //     setMovies(json.body);
+  //   })
+  //   .catch((err) => {
+  //     console.log(`Error ${err}`);
+  //   });
+  // const UsersFlat = fetch("http://localhost:5000/users")
+  //   .then((allUserData) => {
+  //     return allUserData.json();
+  //   })
+  //   .then((json) => {
+  //     console.log(json.body);
+  //     setUsers(json.body);
+  //   })
+  //   .catch((err) => {
+  //     console.log(`Error ${err}`);
+  //   });
 
   useEffect(() => {
     fetch("http://localhost:5000/movies")
@@ -22,7 +45,7 @@ function App() {
         return allMovieData.json();
       })
       .then((json) => {
-        console.log(json.body);
+        //console.log(json.body);
         setMovies(json.body);
       })
       .catch((err) => {
@@ -33,7 +56,7 @@ function App() {
         return allUserData.json();
       })
       .then((json) => {
-        console.log(json.body);
+        //console.log(json.body);
         setUsers(json.body);
       })
       .catch((err) => {
@@ -41,8 +64,8 @@ function App() {
       });
   }, []);
 
-  console.log(`all users: ${users}`);
-  console.log(`all movies: ${movies}`);
+  // console.log(`all users: ${users}`);
+  // console.log(`all movies: ${movies}`);
 
   let userHack = window.sessionStorage.getItem("loggedIn");
 

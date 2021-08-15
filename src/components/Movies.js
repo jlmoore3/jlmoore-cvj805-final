@@ -62,10 +62,16 @@ const Movies = (props) => {
         {!thisKeyword && mapMovies}
         {thisKeyword && filterMovies}
         {!results && (
-          <>
+          <div className="container">
             <h1>No results</h1>
             <p>Browse by Genre:</p>
             <Genres />
+          </div>
+        )}
+        {!movies &
+        (
+          <>
+            Please ensure the Java Spring Boot API is running on localhost:5000
           </>
         )}
       </div>

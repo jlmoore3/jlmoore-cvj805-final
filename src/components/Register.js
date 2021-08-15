@@ -1,62 +1,95 @@
 import React from "react";
+import UsersContext from "../context/UsersContext";
+import { useState } from "react";
 
 const Register = (props) => {
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    fName: "",
+    lName: "",
+    email: "",
+  });
+  console.log(user);
+
+  const submitForm = fetch("http://localhost:5000/register", {
+    method: "POST",
+    headers: { "Content-Type": "application.json" },
+    body: JSON.stringify(user),
+  })
+    .then(console.log(user))
+    .then()
+    .catch((err) => console.log(`Error: ${err}`));
+
   return (
     <>
       <div className="login-wrapper">
-        <form>
+        <form onSubmit={submitForm}>
           <div className="col-sm">
-            <label htmlFor="Username">
+            <label htmlFor="username">
               <input
                 type="text"
+                name="username"
+                value={user.username}
                 placeholder="Username"
-                onChange={({ target }) =>
-                  sessionStorage.setItem("Username", { target })
-                }
+                required
+                onChange={(event) => {
+                  setUser({ ...user, username: event.target.value });
+                }}
               />
             </label>
           </div>
           <div className="col-sm">
-            <label htmlFor="Password">
+            <label htmlFor="password">
               <input
+                name="password"
+                value={user.password}
                 type="password"
+                required
                 placeholder="Password"
-                onChange={({ target }) =>
-                  sessionStorage.setItem("Password", { target })
-                }
+                onChange={(event) => {
+                  setUser({ ...user, password: event.target.value });
+                }}
               />
             </label>
           </div>
           <div className="col-sm">
-            <label htmlFor="First Name">
+            <label htmlFor="fName">
               <input
+                value={user.fName}
+                name="fName"
                 type="text"
+                required
                 placeholder="First Name"
-                onChange={({ target }) =>
-                  sessionStorage.setItem("fName", { target })
-                }
+                onChange={(event) => {
+                  setUser({ ...user, fName: event.target.value });
+                }}
               />
             </label>
           </div>
           <div className="col-sm">
             <label htmlFor="Surame">
               <input
+                value={user.lName}
                 type="text"
+                required
                 placeholder="Surname"
-                onChange={({ target }) =>
-                  sessionStorage.setItem("lName", { target })
-                }
+                onChange={(event) => {
+                  setUser({ ...user, lName: event.target.value });
+                }}
               />
             </label>
           </div>
           <div className="col-sm">
             <label htmlFor="Email">
               <input
+                value={user.email}
                 type="text"
+                required
                 placeholder="Email"
-                onChange={({ target }) =>
-                  sessionStorage.setItem("eMail", { target })
-                }
+                onChange={(event) => {
+                  setUser({ ...user, email: event.target.value });
+                }}
               />
             </label>
           </div>
@@ -64,7 +97,7 @@ const Register = (props) => {
             <button
               className="btn btn-primary"
               type="submit"
-              onClick={() => props.setUser(true)}
+              onClick={submitForm}
             >
               Register
             </button>
